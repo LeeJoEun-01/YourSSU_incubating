@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
     lazy var imagePicker: UIImagePickerController = {
         let picker: UIImagePickerController = UIImagePickerController()
@@ -15,6 +15,8 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.delegate = self
         return picker
     }()
+    
+    // @IBAction이란?   Interface Builder에 어떤 요소들이 event를 받았을 때 거기에 반응하기 위한 코드
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -48,10 +50,26 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // 2. code로만 구현하는 tap 메서드
+//        let tapGesture: UITapGestureRecognizer =
+//            UITapGestureRecognizer(target: self, action:
+//            #selector(self.tapView(_:)))
+//
+//        self.view.addGestureRecognizer(tapGesture)
+        
+        //3. delegate 사용할 때
+        let tapGesture: UITapGestureRecognizer =
+            UITapGestureRecognizer()
+        tapGesture.delegate = self
+        
+        self.view.addGestureRecognizer(tapGesture)
     }
-    // @IBAction이란?   Interface Builder에 어떤 요소들이 event를 받았을 때 거기에 반응하기 위한 코드
+    // delegate 메서드 만들기
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
     
     //POP Method 연결
     @IBAction func popToPrev() {
@@ -63,14 +81,9 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.dismiss(animated: true, completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    // 1. storyboard와 연결하는 tap 메서드
+//    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+//        self.view.endEditing(true)
+//    }
 
 }
