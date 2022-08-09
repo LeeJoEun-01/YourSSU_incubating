@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 //싱글톤 타입 클래스 만들어주기
 

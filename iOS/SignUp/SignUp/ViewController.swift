@@ -15,13 +15,8 @@ class ViewController: UIViewController {
     }
     
     //인터페이스에 연결할 프로퍼티와 메서드 생성
-    @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var ageField: UITextField!
+    @IBOutlet weak var idField: UITextField!
     
-    @IBAction func touchUpSetButton(_ sender: UIButton) {
-        UserInformation.shared.name = nameField.text
-        UserInformation.shared.age = ageField.text
-    }
 
 
 }
