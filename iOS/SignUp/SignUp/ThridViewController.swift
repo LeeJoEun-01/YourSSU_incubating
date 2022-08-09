@@ -36,5 +36,18 @@ class ThridViewController: UIViewController {
             #selector(self.didDatePickerValueChanged(_:)), for:
             UIControl.Event.valueChanged)
     }
+    
+    //이전
+    @IBAction func popToPrev() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    // 취소
+    @IBAction func popToPrev2() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    // 가입
+    @IBAction func popToPrev3() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 
 }

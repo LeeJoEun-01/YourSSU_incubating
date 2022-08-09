@@ -16,13 +16,12 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         return picker
     }()
     
-    // @IBAction이란?   Interface Builder에 어떤 요소들이 event를 받았을 때 거기에 반응하기 위한 코드
-    
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBAction func touchSelectImageButton(_ senderl: UIButton) {
+    @IBAction func touchSelectImageButton(_ sender: UIButton) {
         self.present(self.imagePicker, animated: true, completion: nil)
     }
+
     // 이미지 피커가 이미지가 선택되었을 때 우리에게 이미지를 보여주는 Delegate 만들기
     // 취소하기 눌렀을 때 모달 창 닫기
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -37,26 +36,13 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.dismiss(animated: true, completion: nil)
     }
     
-    //
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
+    //다음 버튼 조건 만족전까지는 비활성화
+    //@IBOutlet weak var nextBtn: UIButton!
     
-    // 화면에 보이기 직전에 세팅
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.nameLabel.text = UserInformation.shared.name
-        self.ageLabel.text = UserInformation.shared.age
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 2. code로만 구현하는 tap 메서드
-//        let tapGesture: UITapGestureRecognizer =
-//            UITapGestureRecognizer(target: self, action:
-//            #selector(self.tapView(_:)))
-//
-//        self.view.addGestureRecognizer(tapGesture)
+        // 다음 버튼 disabled
+        //nextBtn.isEnabled = false
         
         //3. delegate 사용할 때
         let tapGesture: UITapGestureRecognizer =
@@ -65,25 +51,31 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         self.view.addGestureRecognizer(tapGesture)
     }
+    // 화면에 보이기 직전에 세팅
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    //
+    @IBOutlet weak var pwd1: UITextField!
+    @IBOutlet weak var pwd2: UITextField!
+    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        if (pwd1.text == pwd2.text){
+//            nextBtn.isEnabled = true
+//        }
+//    }
     // delegate 메서드 만들기
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         self.view.endEditing(true)
         return true
     }
     
-    //POP Method 연결
+    
+    //이전
     @IBAction func popToPrev() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    // Dismiss Modal 코드로 기능 구현
-    @IBAction func dismissModal() {
-        self.dismiss(animated: true, completion: nil)
-    }
-
-    // 1. storyboard와 연결하는 tap 메서드
-//    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
-//        self.view.endEditing(true)
-//    }
 
 }
