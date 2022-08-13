@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThridViewController: UIViewController {
+class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
@@ -27,6 +27,9 @@ class ThridViewController: UIViewController {
         
         self.dateLabel.text = dateString
     }
+    @IBOutlet weak var registerBtn: UIButton!
+    //전화번호 textField
+    @IBOutlet weak var number: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,30 @@ class ThridViewController: UIViewController {
         self.datePicker.addTarget(self, action:
             #selector(self.didDatePickerValueChanged(_:)), for:
             UIControl.Event.valueChanged)
+        
+        // 조건 충족 전까지 가입 버튼 disabled
+        registerBtn.isEnabled = false
+        self.number.delegate = self
+        
+        //3. delegate 사용할 때
+        let tapGesture: UITapGestureRecognizer =
+            UITapGestureRecognizer()
+        tapGesture.delegate = self
+        
+        self.view.addGestureRecognizer(tapGesture)
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if(number.text?.isEmpty == false){
+            registerBtn.isEnabled = true
+        }
+    }
+    
+    // delegate 메서드 만들기
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     //이전
