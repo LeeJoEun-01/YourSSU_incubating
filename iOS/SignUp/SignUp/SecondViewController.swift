@@ -15,13 +15,18 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.delegate = self
         return picker
     }()
-    
+
     @IBOutlet weak var imageView: UIImageView!
+
+    //사진 추가하기 Text
+//    @IBAction func touchSelectImageButton(_ sender: UIButton) {
+//        self.present(self.imagePicker, animated: true, completion: nil)
+//    }
     
-    @IBAction func touchSelectImageButton(_ sender: UIButton) {
+    @objc func imageViewTapped(_ sender: UITapGestureRecognizer){
         self.present(self.imagePicker, animated: true, completion: nil)
     }
-
+    
 
     // 이미지 피커가 이미지가 선택되었을 때 우리에게 이미지를 보여주는 Delegate 만들기
     // 취소하기 눌렀을 때 모달 창 닫기
@@ -48,6 +53,11 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.imageView?.isUserInteractionEnabled = true
+        self.imageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imageViewTapped)))
+        
+
         // 다음 버튼 disabled
         nextBtn.isEnabled = false
         self.id.delegate = self
@@ -60,13 +70,8 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         let tapGesture: UITapGestureRecognizer =
             UITapGestureRecognizer()
         tapGesture.delegate = self
-        
+
         self.view.addGestureRecognizer(tapGesture)
-    }
-    // 화면에 보이기 직전에 세팅
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
     }
     
     //버튼 활성화 조건문

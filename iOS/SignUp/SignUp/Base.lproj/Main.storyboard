@@ -183,18 +183,6 @@
                                     <segue destination="pie-uI-FNL" kind="show" id="NMT-tc-Uaf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ez9-Ra-Qlj">
-                                <rect key="frame" x="8" y="239" width="186" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="186" id="1Us-tC-UkV"/>
-                                    <constraint firstAttribute="height" constant="31" id="CXZ-Uw-yLA"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="사진 선택하기"/>
-                                <connections>
-                                    <action selector="touchSelectImageButton:" destination="mDZ-4p-efT" eventType="touchUpInside" id="tbz-pZ-4so"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FNj-JV-MoV"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -205,21 +193,17 @@
                             <constraint firstItem="d34-hI-F04" firstAttribute="top" secondItem="FNj-JV-MoV" secondAttribute="top" constant="13" id="55y-R2-0tE"/>
                             <constraint firstItem="FNj-JV-MoV" firstAttribute="trailing" secondItem="S4e-Jf-ggK" secondAttribute="trailing" constant="32.5" id="6Fm-o4-Ftm"/>
                             <constraint firstItem="h0g-T8-ckh" firstAttribute="leading" secondItem="FNj-JV-MoV" secondAttribute="leading" constant="110" id="6mz-R2-18b"/>
-                            <constraint firstItem="FNj-JV-MoV" firstAttribute="trailing" secondItem="ez9-Ra-Qlj" secondAttribute="trailing" constant="220" id="7dj-qz-XY4"/>
                             <constraint firstItem="ui9-kQ-8ts" firstAttribute="top" secondItem="O9x-kL-i32" secondAttribute="bottom" constant="15" id="84a-kL-gre"/>
                             <constraint firstItem="S4e-Jf-ggK" firstAttribute="top" secondItem="EO2-2l-HeQ" secondAttribute="bottom" constant="41.5" id="MhJ-eX-2Va"/>
                             <constraint firstItem="EO2-2l-HeQ" firstAttribute="top" secondItem="ui9-kQ-8ts" secondAttribute="bottom" constant="19" id="QN7-JQ-g8Z"/>
                             <constraint firstItem="ui9-kQ-8ts" firstAttribute="leading" secondItem="d34-hI-F04" secondAttribute="trailing" constant="8" id="Ren-Xc-asG"/>
                             <constraint firstItem="h0g-T8-ckh" firstAttribute="top" secondItem="S4e-Jf-ggK" secondAttribute="bottom" constant="30" id="S7o-PT-jOp"/>
                             <constraint firstItem="FNj-JV-MoV" firstAttribute="trailing" secondItem="ui9-kQ-8ts" secondAttribute="trailing" constant="32" id="Y9a-af-ktA"/>
-                            <constraint firstItem="ez9-Ra-Qlj" firstAttribute="leading" secondItem="FNj-JV-MoV" secondAttribute="leading" constant="8" id="YPu-LM-Neb"/>
                             <constraint firstItem="FNj-JV-MoV" firstAttribute="trailing" secondItem="EO2-2l-HeQ" secondAttribute="trailing" constant="32" id="bSF-Qg-KEY"/>
                             <constraint firstItem="EO2-2l-HeQ" firstAttribute="top" secondItem="ui9-kQ-8ts" secondAttribute="bottom" constant="19" id="e0W-Sl-l7X"/>
                             <constraint firstItem="O9x-kL-i32" firstAttribute="leading" secondItem="d34-hI-F04" secondAttribute="trailing" constant="8" id="ejr-So-cPL"/>
-                            <constraint firstItem="S4e-Jf-ggK" firstAttribute="top" secondItem="ez9-Ra-Qlj" secondAttribute="bottom" constant="8.5" id="fIp-8f-FhH"/>
                             <constraint firstItem="O9x-kL-i32" firstAttribute="top" secondItem="FNj-JV-MoV" secondAttribute="top" constant="13" id="fsP-HZ-9ZY"/>
                             <constraint firstItem="S4e-Jf-ggK" firstAttribute="leading" secondItem="FNj-JV-MoV" secondAttribute="leading" constant="32.5" id="hgi-rG-iml"/>
-                            <constraint firstItem="ez9-Ra-Qlj" firstAttribute="top" secondItem="d34-hI-F04" secondAttribute="bottom" constant="2" id="jW8-3e-k4v"/>
                             <constraint firstItem="ui9-kQ-8ts" firstAttribute="top" secondItem="O9x-kL-i32" secondAttribute="bottom" constant="15" id="ldD-xl-Qxd"/>
                             <constraint firstItem="EO2-2l-HeQ" firstAttribute="leading" secondItem="d34-hI-F04" secondAttribute="trailing" constant="8" id="pjm-Sy-tzn"/>
                             <constraint firstItem="FNj-JV-MoV" firstAttribute="trailing" secondItem="O9x-kL-i32" secondAttribute="trailing" constant="32" id="rQd-EX-vBg"/>
@@ -228,7 +212,7 @@
                     <navigationItem key="navigationItem" id="HzG-rc-dct"/>
                     <connections>
                         <outlet property="id" destination="O9x-kL-i32" id="NHo-jv-ckm"/>
-                        <outlet property="imageView" destination="d34-hI-F04" id="mqE-G9-x6b"/>
+                        <outlet property="imageView" destination="d34-hI-F04" id="vgs-tj-gKg"/>
                         <outlet property="intro" destination="S4e-Jf-ggK" id="q6V-gy-bVR"/>
                         <outlet property="nextBtn" destination="f5Z-r9-zJ2" id="oFY-5Z-tDy"/>
                         <outlet property="pwd1" destination="ui9-kQ-8ts" id="rxK-2r-8fU"/>

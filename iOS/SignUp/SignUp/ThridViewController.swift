@@ -70,7 +70,7 @@ class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     }
     // 취소
     @IBAction func popToPrev2() {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     // 가입
     @IBAction func popToPrev3() {
