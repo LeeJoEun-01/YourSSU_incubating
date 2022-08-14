@@ -14,8 +14,8 @@
             filePath = "SignUp/SecondViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "popToPrev()"
             landmarkType = "7">
          </BreakpointContent>

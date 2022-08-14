@@ -9,15 +9,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var id: UITextField!
+    @IBOutlet weak var pwd: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
-    //인터페이스에 연결할 프로퍼티와 메서드 생성
-    @IBOutlet weak var idField: UITextField!
-    
-
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+            
+        self.id.text = UserInformation.shared.id
+        self.pwd.text = ""
+    }
 
 }
 

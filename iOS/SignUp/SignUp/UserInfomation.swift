@@ -15,6 +15,6 @@ class UserInformation  {
     // 이제 shared를 호출하면 같은 인스턴스가 호출된다.
     static let shared: UserInformation = UserInformation()
     
-    var name: String?
-    var age: String?
+    var id: String?
+
 }
