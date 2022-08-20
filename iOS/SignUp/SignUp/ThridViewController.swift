@@ -11,6 +11,7 @@ class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
+    var dateCheck: Bool = false
     let dataFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
 //        formatter.dateStyle = .medium
@@ -19,13 +20,14 @@ class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         return formatter
     }()
     
-    @IBAction func didDatePickerValueChanged(_ sender: UIDatePicker) {
+    @objc func didDatePickerValueChanged(_ sender: UIDatePicker) {
         print("value Change")
         
         let date: Date = self.datePicker.date
         let dateString: String = self.dataFormatter.string(from: date)
         
         self.dateLabel.text = dateString
+        dateCheck = true
     }
     @IBOutlet weak var registerBtn: UIButton!
     //전화번호 textField
@@ -52,8 +54,10 @@ class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if(number.text?.isEmpty == false){
+    // 서브뷰의 레이아웃이 변경된 후 호출되는 메서드 > 서브 뷰의 레이아웃을 변경한 후 추가적인 작업을 수행하기 좋은 시점
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if( number.text?.count == 11 && dateCheck == true){
             registerBtn.isEnabled = true
         }
     }
@@ -70,7 +74,7 @@ class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     }
     // 취소
     @IBAction func popToPrev2() {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     // 가입
     @IBAction func popToPrev3() {

@@ -11,17 +11,20 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     lazy var imagePicker: UIImagePickerController = {
         let picker: UIImagePickerController = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
+        picker.sourceType = .photoLibrary  // 이미지 앨범에서 가져옴
+        picker.allowsEditing = true // 이미지 편집 가능 여부
+        picker.delegate = self //picker delegate
         return picker
     }()
-    
+
     @IBOutlet weak var imageView: UIImageView!
-    
-    @IBAction func touchSelectImageButton(_ sender: UIButton) {
+    var imageCheck: Bool = false
+
+    // imageView Tap 감지 후 imagePicker 제공 (picker를 보여줄 메서드 정의)
+    @objc func imageViewTapped(_ sender: UITapGestureRecognizer){
         self.present(self.imagePicker, animated: true, completion: nil)
     }
-
+    
 
     // 이미지 피커가 이미지가 선택되었을 때 우리에게 이미지를 보여주는 Delegate 만들기
     // 취소하기 눌렀을 때 모달 창 닫기
@@ -32,6 +35,8 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let originalImage: UIImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.imageView.image = originalImage
+            self.imageView.alpha = 1
+            imageCheck = true
         }
 
         self.dismiss(animated: true, completion: nil)
@@ -46,38 +51,78 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var pwd2: UITextField!
     @IBOutlet weak var intro: UITextView!
     
+    // 자기소개 글자 수 보여주기
+    @IBOutlet weak var countLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.imageView.alpha = 0.1
+        self.imageView?.isUserInteractionEnabled = true
+        self.imageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imageViewTapped)))
+        
+
         // 다음 버튼 disabled
+        self.enabledBtn(isOn: false)
         nextBtn.isEnabled = false
         self.id.delegate = self
         self.pwd1.delegate = self
         self.pwd2.delegate = self
         self.intro.delegate = self
         
+        // 처음 화면에 로드되었을 떄 카운트 되지 않았음을 보여주기
+        countLabel.text = "0 / 100"
+        
         
         //3. delegate 사용할 때
         let tapGesture: UITapGestureRecognizer =
             UITapGestureRecognizer()
         tapGesture.delegate = self
-        
+
         self.view.addGestureRecognizer(tapGesture)
     }
-    // 화면에 보이기 직전에 세팅
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    
+    //버튼 활성화
+    func enabledBtn(isOn: Bool){
+        switch isOn{
+        case true:
+            nextBtn.isEnabled = true
+        case false:
+            nextBtn.isEnabled = false
+        }
     }
     
-    //버튼 활성화 조건문
+    //Text가 채워졌느지 확인
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if pwd1.text?.isEmpty == true{
-            
-        }else if pwd1.text == pwd2.text{
-            if id.text?.isEmpty == false{
-                nextBtn.isEnabled = true
-            }
+        if intro.text?.isEmpty == false{
+            self.enabledBtn(isOn: false)
+        } else if pwd1.text?.isEmpty == false && pwd1.text == pwd2.text && id.text?.isEmpty == false && imageCheck == true && intro.text.count >= 15 {
+            self.enabledBtn(isOn: true)
         }
+        
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if id.text?.isEmpty == true && pwd1.text?.isEmpty == true{
+            self.enabledBtn(isOn: false)
+        } else if intro.text.count >= 15 && imageCheck == true {
+            self.enabledBtn(isOn: true)
+        }
+    }
+    
+    //ID 싱글턴에 넣기
+    override func viewDidDisappear(_ animated: Bool){
+        UserInformation.shared.id = id.text
+    }
+    
+    // TextView 글자 수 Count
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = intro.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else {return false}
+        
+        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+        countLabel.text = "\(changedText.count) / 100"
+        
+        return true
     }
 
     
@@ -90,6 +135,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     //이전
     @IBAction func popToPrev() {
+        UserInformation.shared.id = ""
         self.navigationController?.popViewController(animated: true)
     }
     
