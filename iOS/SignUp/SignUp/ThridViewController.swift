@@ -12,11 +12,11 @@ class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
     var dateCheck: Bool = false
-    let dataFormatter: DateFormatter = {
+    let dateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
 //        formatter.dateStyle = .medium
 //        formatter.timeStyle = .medium
-        formatter.dateFormat = "yyyy/MM/dd hh:mm:ss"
+        formatter.dateFormat = "yyyy/MM/dd"
         return formatter
     }()
     
@@ -24,7 +24,7 @@ class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         print("value Change")
         
         let date: Date = self.datePicker.date
-        let dateString: String = self.dataFormatter.string(from: date)
+        let dateString: String = self.dateFormatter.string(from: date)
         
         self.dateLabel.text = dateString
         dateCheck = true
@@ -59,6 +59,8 @@ class ThridViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         super.viewDidLayoutSubviews()
         if( number.text?.count == 11 && dateCheck == true){
             registerBtn.isEnabled = true
+        } else{
+            registerBtn.isEnabled = false
         }
     }
     
