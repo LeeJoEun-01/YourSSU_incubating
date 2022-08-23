@@ -18,7 +18,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     }()
 
     @IBOutlet weak var imageView: UIImageView!
-    var imageCheck: Bool = false
+    var imageExist: Bool = false
 
     // imageView Tap 감지 후 imagePicker 제공 (picker를 보여줄 메서드 정의)
     @objc func imageViewTapped(_ sender: UITapGestureRecognizer){
@@ -36,7 +36,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         if let originalImage: UIImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.imageView.image = originalImage
             self.imageView.alpha = 1
-            imageCheck = true
+            imageExist = true
         }
 
         self.dismiss(animated: true, completion: nil)
@@ -50,6 +50,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var pwd1: UITextField!
     @IBOutlet weak var pwd2: UITextField!
     @IBOutlet weak var intro: UITextView!
+    var countNum: Int = 0
     
     // 자기소개 글자 수 보여주기
     @IBOutlet weak var countLabel: UILabel!
@@ -61,10 +62,15 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.imageView?.isUserInteractionEnabled = true
         self.imageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imageViewTapped)))
         
-
+        // password 암호화
+        pwd1.textContentType = .newPassword
+        pwd1.isSecureTextEntry = true
+        pwd2.textContentType = .newPassword
+        pwd2.isSecureTextEntry = true
+        
         // 다음 버튼 disabled
         self.enabledBtn(isOn: false)
-        nextBtn.isEnabled = false
+        //nextBtn.isEnabled = false
         self.id.delegate = self
         self.pwd1.delegate = self
         self.pwd2.delegate = self
@@ -92,22 +98,42 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    // 서브뷰의 레이아웃이 변경된 후 호출되는 메서드
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("변경\(countNum)")
+        print(intro.text.count)
+        if id.text?.count == 0 || pwd1.text?.count == 0 {
+            self.enabledBtn(isOn: false)
+            //nextBtn.isEnabled = false
+        } else {
+            if pwd1.text == pwd2.text && (intro.text.count)+1 >= 15 && imageExist == true {
+                self.enabledBtn(isOn: true)
+                //nextBtn.isEnabled = true
+            }
+            else {
+                self.enabledBtn(isOn: false)
+            }
+        }
+        countNum = countNum + 1
+    }
+    
     //Text가 채워졌느지 확인
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if intro.text?.isEmpty == false{
-            self.enabledBtn(isOn: false)
-        } else if pwd1.text?.isEmpty == false && pwd1.text == pwd2.text && id.text?.isEmpty == false && imageCheck == true && intro.text.count >= 15 {
-            self.enabledBtn(isOn: true)
-        }
-        
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if id.text?.isEmpty == true && pwd1.text?.isEmpty == true{
-            self.enabledBtn(isOn: false)
-        } else if intro.text.count >= 15 && imageCheck == true {
-            self.enabledBtn(isOn: true)
-        }
-    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        if intro.text?.isEmpty == false{
+//            self.enabledBtn(isOn: false)
+//        } else if pwd1.text?.isEmpty == false && pwd1.text == pwd2.text && id.text?.isEmpty == false && imageCheck == true && intro.text.count >= 15 {
+//            self.enabledBtn(isOn: true)
+//        }
+//
+//    }
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if id.text?.isEmpty == true && pwd1.text?.isEmpty == true{
+//            self.enabledBtn(isOn: false)
+//        } else if intro.text.count >= 15 && imageCheck == true {
+//            self.enabledBtn(isOn: true)
+//        }
+//    }
     
     //ID 싱글턴에 넣기
     override func viewDidDisappear(_ animated: Bool){

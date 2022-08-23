@@ -44,38 +44,39 @@
                                     <constraint firstAttribute="width" constant="250" id="yD2-yI-Dhj"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnY-Nd-4Vw">
-                                <rect key="frame" x="230" y="468" width="84" height="34.5"/>
-                                <color key="tintColor" red="0.86422210320000004" green="0.28176098620000001" blue="0.2181660121" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign Up" buttonSize="medium">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="mDZ-4p-efT" kind="show" id="Ald-PV-wOH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d5-dE-6w9">
-                                <rect key="frame" x="100" y="468" width="76" height="34.5"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign In" buttonSize="medium">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
-                                </buttonConfiguration>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="hV7-hB-6yu">
+                                <rect key="frame" x="109" y="481" width="196" height="30.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d5-dE-6w9">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="30.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign In" buttonSize="small">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnY-Nd-4Vw">
+                                        <rect key="frame" x="116" y="0.0" width="80" height="30.5"/>
+                                        <color key="tintColor" red="0.86422210320000004" green="0.28176098620000001" blue="0.2181660121" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign Up" buttonSize="small">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="mDZ-4p-efT" kind="show" id="Ald-PV-wOH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gpc-Y9-g82" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="64" id="1JD-bv-TBp"/>
-                            <constraint firstItem="5d5-dE-6w9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="1ds-4Z-Gdy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CnY-Nd-4Vw" secondAttribute="trailing" constant="100" id="OMA-0q-zOp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5d5-dE-6w9" secondAttribute="bottom" constant="310.5" id="VEO-6X-6f0"/>
-                            <constraint firstItem="5d5-dE-6w9" firstAttribute="top" secondItem="gpc-Y9-g82" secondAttribute="bottom" constant="19" id="YID-Ra-Mi4"/>
+                            <constraint firstItem="hV7-hB-6yu" firstAttribute="top" secondItem="gpc-Y9-g82" secondAttribute="bottom" constant="32" id="DTA-Ae-SZS"/>
+                            <constraint firstItem="hV7-hB-6yu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MMD-1M-Yrb"/>
                             <constraint firstItem="IeN-fP-cgX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="82" id="amG-6q-7ej"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gpc-Y9-g82" secondAttribute="trailing" constant="64" id="eLQ-fm-SFf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IeN-fP-cgX" secondAttribute="trailing" constant="82" id="fyX-8x-OVo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CnY-Nd-4Vw" secondAttribute="bottom" constant="310.5" id="hQ0-nK-TzG"/>
-                            <constraint firstItem="CnY-Nd-4Vw" firstAttribute="top" secondItem="gpc-Y9-g82" secondAttribute="bottom" constant="19" id="nWi-Ve-edc"/>
                             <constraint firstItem="gpc-Y9-g82" firstAttribute="top" secondItem="IeN-fP-cgX" secondAttribute="bottom" constant="33" id="vwZ-h4-JkB"/>
                             <constraint firstItem="IeN-fP-cgX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zdg-OF-DVP"/>
                         </constraints>
@@ -117,7 +118,7 @@
                                 <rect key="frame" x="177" y="150" width="205" height="34"/>
                                 <color key="textColor" systemColor="systemGray2Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S4e-Jf-ggK">
                                 <rect key="frame" x="33" y="295" width="349" height="463"/>
@@ -136,7 +137,7 @@
                                 </constraints>
                                 <color key="textColor" systemColor="systemGray2Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lD6-Hn-GOL">
                                 <rect key="frame" x="272" y="250" width="110" height="37"/>
@@ -221,7 +222,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="0Jr-e8-l5p">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="0Jr-e8-l5p">
                                 <rect key="frame" x="0.0" y="254" width="414" height="216"/>
                             </datePicker>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRQ-YV-LZt">
