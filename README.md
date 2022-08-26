@@ -15,7 +15,8 @@
 
 ### iOS 앱 프로그래밍 
 - SignUp Project (5week~6week)
-- 기상정보 
+- Weather Today (7week~)
     - 테이블뷰
     - 뷰의 재사용
+    - Json 데이터 활용
     
