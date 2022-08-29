@@ -17,7 +17,7 @@
 		02DCC77C28B3AF560093CD57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02DCC77B28B3AF560093CD57 /* Assets.xcassets */; };
 		02DCC77F28B3AF560093CD57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02DCC77D28B3AF560093CD57 /* LaunchScreen.storyboard */; };
 		02DCC78728B3AFEE0093CD57 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DCC78628B3AFEE0093CD57 /* SecondViewController.swift */; };
-		02DCC78928B3B0000093CD57 /* ThridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DCC78828B3B0000093CD57 /* ThridViewController.swift */; };
+		02DCC78928B3B0000093CD57 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DCC78828B3B0000093CD57 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		02DCC77E28B3AF560093CD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02DCC78028B3AF560093CD57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02DCC78628B3AFEE0093CD57 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		02DCC78828B3B0000093CD57 /* ThridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThridViewController.swift; sourceTree = "<group>"; };
+		02DCC78828B3B0000093CD57 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 				02DCC77628B3AF550093CD57 /* ViewController.swift */,
 				02DCC77828B3AF550093CD57 /* Main.storyboard */,
 				02C3DE8E28B3B23E000A4270 /* CountryTableViewCell.swift */,
-				02DCC78828B3B0000093CD57 /* ThridViewController.swift */,
+				02DCC78828B3B0000093CD57 /* ThirdViewController.swift */,
 				02DCC78628B3AFEE0093CD57 /* SecondViewController.swift */,
 				02DCC77B28B3AF560093CD57 /* Assets.xcassets */,
 				02C3DE9228B3CD34000A4270 /* WeatherKr.swift */,
@@ -157,7 +157,7 @@
 				02DCC78728B3AFEE0093CD57 /* SecondViewController.swift in Sources */,
 				02C3DE9128B3CBD9000A4270 /* WeatherTableViewCell.swift in Sources */,
 				02DCC77728B3AF550093CD57 /* ViewController.swift in Sources */,
-				02DCC78928B3B0000093CD57 /* ThridViewController.swift in Sources */,
+				02DCC78928B3B0000093CD57 /* ThirdViewController.swift in Sources */,
 				02DCC77328B3AF550093CD57 /* AppDelegate.swift in Sources */,
 				02DCC77528B3AF550093CD57 /* SceneDelegate.swift in Sources */,
 				02C3DE9328B3CD34000A4270 /* WeatherKr.swift in Sources */,

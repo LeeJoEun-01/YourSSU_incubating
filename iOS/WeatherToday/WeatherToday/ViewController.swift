@@ -20,8 +20,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //self.navigationItem.title = "세계 날씨"
-        self.title = "세계 날씨"
+        self.navigationItem.title = "세계 날씨"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,10 +55,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 segue.destination as? SecondViewController else{
             return
         }
-        guard let cell: UITableViewCell = sender as? UITableViewCell else {
+        guard let cell: CountryTableViewCell = sender as? CountryTableViewCell else {
             return
         }
-        nextViewController.textToSet = cell.textLabel?.text
+        nextViewController.textToSet = cell.countryLabel?.text
     }
 
 
