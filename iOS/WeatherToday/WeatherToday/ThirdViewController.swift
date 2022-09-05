@@ -22,11 +22,22 @@ class ThirdViewController: UIViewController {
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var rainfallLabel: UILabel!
     
+    let sunnyImage: String = "sunny.jpg"
+    let snowyImage: String = "snowy.jpg"
+    let rainyImage: String = "rainy.jpg"
+    let cloudyImage: String = "cloudy.jpg"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // navigation 색상 바꾸기
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = UIColor(displayP3Red: 0.4, green: 0.6, blue: 1.0, alpha: 1.0)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.title = self.cityToSet
-        
         // 데이터 가져온거 넣어주기
         self.weatherImg?.image = self.imageToSet
         self.stateLabel?.text = self.stateToSet
@@ -36,11 +47,11 @@ class ThirdViewController: UIViewController {
         self.rainfallLabel?.textColor = self.rainColorToSet
         
         //print(self.weatherImg?.image)
-        if self.imageToSet == UIImage(named: "sunny.jpg") {
+        if self.imageToSet == UIImage(named: sunnyImage) {
             self.weatherLabel?.text = "맑음"
-        } else if self.imageToSet == UIImage(named: "snowy.jpg") {
+        } else if self.imageToSet == UIImage(named: snowyImage) {
             self.weatherLabel?.text = "눈"
-        } else if self.imageToSet == UIImage(named: "rainy.jpg") {
+        } else if self.imageToSet == UIImage(named: rainyImage) {
             self.weatherLabel?.text = "비"
         } else {
             self.weatherLabel?.text = "구름"
