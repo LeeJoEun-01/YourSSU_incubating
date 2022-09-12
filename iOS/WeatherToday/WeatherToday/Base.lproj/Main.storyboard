@@ -28,7 +28,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-YG-Upo">
-                                                    <rect key="frame" x="362" y="7" width="37" height="32.5"/>
+                                                    <rect key="frame" x="317" y="7" width="77" height="32.5"/>
                                                     <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system"/>
@@ -41,10 +41,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lx-2n-geI">
-                                                    <rect key="frame" x="98" y="12.5" width="74" height="21"/>
+                                                    <rect key="frame" x="98" y="12.5" width="170" height="21"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="6Fs-bM-bco"/>
                                                         <constraint firstAttribute="height" constant="21" id="Tag-Do-bcb"/>
-                                                        <constraint firstAttribute="width" constant="74" id="aea-O3-9kp"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -52,14 +52,15 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="2Lx-2n-geI" firstAttribute="leading" secondItem="vg9-Mf-WTW" secondAttribute="trailing" constant="17" id="2y0-I4-zP4"/>
                                                 <constraint firstAttribute="bottom" secondItem="vg9-Mf-WTW" secondAttribute="bottom" id="35I-oT-yfd"/>
                                                 <constraint firstItem="vg9-Mf-WTW" firstAttribute="top" secondItem="gFj-gI-6wE" secondAttribute="top" id="In0-22-xtL"/>
-                                                <constraint firstItem="2Lx-2n-geI" firstAttribute="leading" secondItem="vg9-Mf-WTW" secondAttribute="trailing" constant="17" id="Pra-bE-DVW"/>
+                                                <constraint firstAttribute="trailing" secondItem="Dc2-YG-Upo" secondAttribute="trailing" constant="20" id="Nku-fR-sUf"/>
                                                 <constraint firstAttribute="bottom" secondItem="Dc2-YG-Upo" secondAttribute="bottom" constant="7" id="YML-Z5-gCb"/>
+                                                <constraint firstItem="Dc2-YG-Upo" firstAttribute="leading" secondItem="2Lx-2n-geI" secondAttribute="trailing" constant="49" id="YcQ-2L-o7z"/>
                                                 <constraint firstItem="Dc2-YG-Upo" firstAttribute="top" secondItem="gFj-gI-6wE" secondAttribute="top" constant="7" id="ZDY-TY-IZg"/>
                                                 <constraint firstItem="vg9-Mf-WTW" firstAttribute="leading" secondItem="gFj-gI-6wE" secondAttribute="leading" constant="15" id="mZ9-hU-cff"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="2Lx-2n-geI" secondAttribute="bottom" constant="2" id="n5d-jJ-vo8"/>
-                                                <constraint firstAttribute="trailing" secondItem="Dc2-YG-Upo" secondAttribute="trailing" constant="15" id="t7Y-FR-FYh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

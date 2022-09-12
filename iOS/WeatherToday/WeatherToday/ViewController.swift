@@ -21,10 +21,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.title = "세계 날씨"
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = UIColor(displayP3Red: 0.4, green: 0.6, blue: 1.0, alpha: 1.0)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
             return 1 //섹션 두 개 사용
+    }
+    // 테이블뷰 셀이 선택되면 회색이 되는데 다음 화면 갔다가 왔을때 원래대로
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     // 테이블뷰에 섹션에 해당하는 로우의 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
