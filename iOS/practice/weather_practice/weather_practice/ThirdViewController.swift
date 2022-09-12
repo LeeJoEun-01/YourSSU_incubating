@@ -51,6 +51,7 @@ class ThirdViewController: UIViewController, UITableViewDataSource { //UITableVi
         }
         
         self.tableView.reloadData()
+        print(dataAsset)
     }
 
 }
