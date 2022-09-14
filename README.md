@@ -10,7 +10,6 @@
 - 실제 프로젝트 파일
     - SignUp Project (5week~6week)
     - Weather Today (7week~8week)
-    - PhotosExample&AsyncExample (9week) -> snapkit으로 구현하
 
-- 강의 실습 파일
-    - practice
+- 강의 실습 파일 practice
+    - PhotosExample&AsyncExample (9week) -> snapkit으로 구현해보자
