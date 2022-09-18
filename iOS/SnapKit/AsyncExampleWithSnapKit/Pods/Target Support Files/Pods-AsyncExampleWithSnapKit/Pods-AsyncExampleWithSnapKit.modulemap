@@ -1,0 +1,6 @@
+framework module Pods_AsyncExampleWithSnapKit {
+  umbrella header "Pods-AsyncExampleWithSnapKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
