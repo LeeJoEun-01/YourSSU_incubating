@@ -64,9 +64,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         self.fetchResult = PHAsset.fetchAssets(in: cameraRollCollection, options: fetchOptions)
     }
+    //tableView cell 높이 조절
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
+    CGFloat {
+               return 80
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.tableView.estimatedRowHeight = 100
+//        self.tableView.rowHeight = UITableView.automaticDimension
         
         //사용자가 사진첩에 접근을 허가 했는지 확인
         let photoAurhorizationStatus = PHPhotoLibrary.authorizationStatus()
@@ -106,6 +115,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         PHPhotoLibrary.shared().register(self)
     }
+    // 선택되었던 셀 다시 deselect 해주기
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.fetchResult?.count ?? 0
@@ -117,7 +130,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let asset: PHAsset = fetchResult.object(at: indexPath.row)
         
         //실질적인 이미지 요청
-        imageManager.requestImage(for: asset, targetSize: CGSize(width: 30, height: 30), contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
+        imageManager.requestImage(for: asset, targetSize: CGSize(width: 60, height: 60), contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
             cell.imageView?.image = image
         })
         return cell
