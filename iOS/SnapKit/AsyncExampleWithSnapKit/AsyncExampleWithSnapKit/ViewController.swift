@@ -29,23 +29,35 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        self.view.addSubview(imageView)
-        imageView.snp.makeConstraints{ (make) in
-            make.width.equalTo(260)
-            make.height.equalTo(182)
-            make.top.equalTo(self.view).offset(150)
-            make.centerX.equalTo(view.snp.centerX)
-        }
-        
-        self.view.addSubview(downloadBtn)
-        downloadBtn.snp.makeConstraints{ (make) in
-            make.top.equalTo(self.imageView).offset(230)
-            make.centerX.equalTo(view.snp.centerX)
-        }
+        //최종적으로 setLayout만 호출
+        setLayouts()
         
         downloadBtn.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
-        
-        
+    }
+    
+// 유어슈 SnapKit 규칙 참고!!
+    func setLayouts() {
+        setViewHierarchy()
+        setConstraints()
+    }
+    // addSubview만 넣기
+    func setViewHierarchy() {
+        self.view.addSubview(imageView)
+        self.view.addSubview(downloadBtn)
+    }
+    // makeConstraints만 넣기
+    func setConstraints() {
+        imageView.snp.makeConstraints{
+            $0.width.equalTo(260)
+            $0.height.equalTo(182)
+            $0.top.equalTo(self.view).offset(150)
+            $0.centerX.equalTo(view.snp.centerX)
+        }
+
+        downloadBtn.snp.makeConstraints{
+            $0.top.equalTo(self.imageView).offset(230)
+            $0.centerX.equalTo(view.snp.centerX)
+        }
     }
     
     @objc
@@ -61,9 +73,12 @@ class ViewController: UIViewController {
             // 위의 작업이 끝나면 다시 main thread로 와서 작업하자
             OperationQueue.main.addOperation {
                 self.imageView.image = image
-                self.view.addSubview(self.imageView)
             }
         }
+//        let imageData: Data = try! Data.init(contentsOf: imageURL)
+//        let image: UIImage = UIImage(data: imageData)!
+//        self.imageView.image = image
+//        self.view.addSubview(self.imageView)
         print("click")
     }
 
