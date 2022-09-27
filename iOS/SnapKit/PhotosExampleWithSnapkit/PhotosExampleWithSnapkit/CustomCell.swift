@@ -12,10 +12,6 @@ class CustomCell: UITableViewCell {
     static let cellId = "customCell"
     
     let photoView = UIImageView()
-    let nextBtn = UIButton()
-    
-    //let nextIcon: UIImage = UIImage(named: "chevron.right")!
-    //nextBtn.setImage(nextIcon, for: .normal)
     
     //스토리보드로 셀을 작성하게 될 경우 초기화를 해주기 때문에 안해줘도 되지만 코드로 작성하게 될 경우에는 작성해야 한다.
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,20 +29,16 @@ class CustomCell: UITableViewCell {
 
     private func setViewHierarchy() {
         self.addSubview(photoView)
-        self.addSubview(nextBtn)
+        // self.addSubview(nextBtn)
+        // 기존 코드를 해석하면 cell에 photoView와 nextBtn이 올라가고 그 위에 contentView가 올라가기 때문에
+        // self.contentView.addSubview(nextBtn)로 코드를 작성해 주어야지 contentView 위에 nextBtn이 올라간다.
     }
 
     private func setConstraints() {
         photoView.snp.makeConstraints{
             $0.centerY.equalTo(self)
-            $0.left.equalTo(self).offset(20)
-            $0.size.width.height.equalTo(60)
-        }
-
-        nextBtn.snp.makeConstraints{
-            $0.leading.equalTo(self).offset(330)
-            $0.centerY.equalTo(self)
-            $0.size.width.height.equalTo(20)
+            $0.leading.equalTo(self).offset(20)
+            $0.size.equalTo(60)
         }
     }
 
