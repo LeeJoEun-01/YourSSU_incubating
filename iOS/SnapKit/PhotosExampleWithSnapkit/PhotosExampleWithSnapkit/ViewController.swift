@@ -12,19 +12,10 @@ import Photos
 class ViewController: UIViewController {
     
     var tableView : UITableView = {
-        print("tableView")
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
             
         return tableView
     }()
-    
-//    var nextBtn: UIButton = {
-//        let nextBtn = UIButton()
-//        nextBtn.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-//
-//        return nextBtn
-//    }()
     
     var fetchResult: PHFetchResult<PHAsset>!
     //이미지를 로드해올 친구
@@ -34,22 +25,6 @@ class ViewController: UIViewController {
     @objc
     func touchUpRefreshButton(_ sender: UIBarButtonItem) {
         self.tableView.reloadSections(IndexSet(0...0), with: .automatic)
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // 편집이 delete라면
-        if editingStyle == .delete {
-            let asset: PHAsset = self.fetchResult[indexPath.row]
-            
-            // 삭제 버튼이 눌릴때 나오는 경고창
-            PHPhotoLibrary.shared().performChanges(
-                {PHAssetChangeRequest.deleteAssets([asset] as NSArray)
-                }, completionHandler: nil)
-        }
     }
     
     func photoLibraryDidChange(_ changeInstance: PHChange) {
@@ -65,7 +40,6 @@ class ViewController: UIViewController {
     }
     
     func requestCollection() {
-        
         // 카메라로 찍으면 저장되는
         let cameraRoll: PHFetchResult<PHAssetCollection> = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil)
         guard let cameraRollCollection = cameraRoll.firstObject else {
@@ -90,16 +64,13 @@ class ViewController: UIViewController {
         setViewHierarchy()
         setConstraints()
     }
-    //tableView cell 높이 조절
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
-    CGFloat {
-               return 80
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        // navigation bar에 item 추가하기
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(touchUpRefreshButton))
         self.navigationItem.title = "사진들"
         
         tableView.delegate = self
@@ -141,40 +112,41 @@ class ViewController: UIViewController {
         @unknown default:
             print("강의엔 없음")
         }
-        //tableView.addTarget(self, action: #selector(nextView), for: .touchUpInside)
         
         setLayouts()
-        //PHPhotoLibrary.shared().register(self)
-        
+        setPhoto()
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    @objc private func nextView(_ sender: UIButton) {
-        print("nextView")
-        let viewController = ImageZoomViewController()
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-//    override func prepare(_ sender: Any?) {
-//        guard let nextViewController: ImageZoomViewController = self.storyboard?.instantiateViewController(withIdentifier:"nextVC") as? ImageZoomViewController else {
-//            return
-//        }
-//
-//        guard let cell: UITableViewCell = sender as? UITableViewCell else {
-//            return
-//        }
-//        guard let index: IndexPath = self.tableView.indexPath(for: cell) else {
-//            return
-//        }
-//
-//        nextViewController.asset = self.fetchResult[index.row]
-//    }
-
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+            super.setEditing(editing, animated: true)
+            tableView.setEditing(editing, animated: true)
+    }
+    
+    //tableView cell 높이 조절
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
+    CGFloat {
+               return 80
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        // 편집이 delete라면
+        if editingStyle == .delete {
+            let asset: PHAsset = self.fetchResult[indexPath.row]
+
+            // 삭제 버튼이 눌릴때 나오는 경고창
+            PHPhotoLibrary.shared().performChanges(
+                {PHAssetChangeRequest.deleteAssets([asset] as NSArray)
+                }, completionHandler: nil)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.fetchResult?.count ?? 0
     }
@@ -189,12 +161,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell.photoView.image = image
         })
         
-        //let nextIcon: UIImage = UIImage(named: "chevron.right")!
-        cell.nextBtn.setTitle(">", for: .normal)
-        cell.nextBtn.setTitleColor(.black, for: .normal)
-        cell.nextBtn.addTarget(self, action: #selector(nextView), for: .touchUpInside)
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextViewController = ImageZoomViewController()
+        let index: IndexPath = indexPath
+        nextViewController.asset = self.fetchResult[index.row]
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
+
+extension ViewController: PHPhotoLibraryChangeObserver {
+    func setPhoto() {
+        PHPhotoLibrary.shared().register(self)
+
+    }
+}
